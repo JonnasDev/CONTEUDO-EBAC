@@ -1,0 +1,55 @@
+.video-footer{
+  position: relative;
+  bottom: 20%;
+  color: white;
+  margin-left: 20px;
+}
+
+.video-footer-musica-text{
+width: 80%;
+overflow: hidden;
+}
+.video-footer-musica-text p{
+  animation: moveText 5s infinite linear;
+}
+
+@keyframes moveText{
+  0%{
+transform: translateX(100%);
+  }
+  100%{
+transform: translateX(-100%);
+  }
+
+}
+
+.nome-perfil{
+  padding-bottom: 20px;
+}
+
+p{
+  padding-bottom: 20px;
+}
+
+.video-footer-musica{
+  display: flex;
+  margin-left: -5px;
+}
+
+.vinil{
+  position: absolute;
+  bottom: 3px;
+  right: 20px;
+  height: 40px;
+  filter: invert(1);
+  animation: spinVinil 5s linear infinite;
+  
+}
+@keyframes spinVinil{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+transform: rotate(360deg);
+  }
+}
