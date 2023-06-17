@@ -2,19 +2,21 @@ import React from 'react'
 import "./footer.css"
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 
-function VideoFooter() {
+function VideoFooter({name, description, music}) {
   return (
     <div className='video-footer'>
       <div className='video-footer-text'>
-        <h3 className='nome-perfil'>@JottinhaDoCreu</h3>
-        <p>Eu estou de roupa ttk #SouManso #AiKalica</p>
+
+        <h3 className='nome-perfil'>{name}</h3>
+        
+        <p>{description}</p>
 
         <div className='video-footer-musica'>
 
           <MusicNoteIcon className='video-footer-icon' />
           
           <div className='video-footer-musica-text'>
-            <p>Pitbull Enraivado -Oh polêmico</p>
+            <p>{music}</p>
           </div>
 
         </div>

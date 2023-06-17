@@ -1,0 +1,13 @@
+.video-sidebar{
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  color: aliceblue;
+  
+}
+
+.video-sidebar-options{
+  
+  text-align: center;
+  font-size: 13px;
+}
