@@ -1,33 +1,60 @@
 import ComponenteVideo from './pages/video';
 import './App.css';
+import React, { useEffect, useState } from 'react';
+import db from './config/firebase';
+import { collection, getDocs } from 'firebase/firestore/lite'
+
 
 function App() {
+
+  const [Videos, SetVideos] = useState([]);
+
+  async function getVideos() {
+
+    const videosCollection = collection(db, "videos")
+    const videosSnapshot = await getDocs(videosCollection)
+    const videosList = videosSnapshot.docs.map(doc => doc.data())
+    SetVideos(videosList);
+  }
+
+  useEffect(() => {
+    getVideos();
+  },
+    [])
+
+
   return (
     <div className="App">
       <div className='app-video'>
 
-        <ComponenteVideo
-        likes={993}
-        messages={434}
-        shares={276}
-        name="jotta01"
-        description="saltando por dinheiro"
-        music="link park"
-        url="https://poqlymuephttfsljdabn.supabase.co/storage/v1/object/public/jornadadev/brecker2.mp4?t=2023-05-22T19%3A37%3A45.885Z"
-        />
+        {Videos.map((item) => {
+          return (
+            <ComponenteVideo
+              likes={item.likes}
+              messages={item.messages}
+              shares={item.shares}
+              name= {item.name}
+              description={item.description}
+              music={item.music}
+              url={item.url}
+            />
+          )
+        })
+        }
 
-        <ComponenteVideo
-        likes={349}
-        messages={54}
-        shares={45}
-        name="raiza01"
-        description="gato cheirador"
-        music="finge que tem uma musica aqui"
-        url="https://poqlymuephttfsljdabn.supabase.co/storage/v1/object/public/jornadadev/bird.mp4?t=2023-05-22T19%3A40%3A47.052Z"
-        />
+        {/* <ComponenteVideo
+       likes={349}
+       messages={54}
+       shares={45}
+       name="raiza01"
+       description="gato cheirador"
+       music="finge que tem uma musica aqui"
+       url="https://poqlymuephttfsljdabn.supabase.co/storage/v1/object/public/jornadadev/bird.mp4?t=2023-05-22T19%3A40%3A47.052Z"
+     /> 
+        */}
 
 
-        
+
       </div>
     </div>
   );
