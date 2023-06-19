@@ -7,13 +7,23 @@ import { collection, getDocs } from 'firebase/firestore/lite'
 
 function App() {
 
-  const [Videos, SetVideos] = useState([]);
 
-  async function getVideos() {
+           let maxHeight;
+  if (window.innerHeight <= 800) {
+            maxHeight = window.innerHeight;
+  }
+
+
+  const [Videos,
+     SetVideos] = useState([]);
+
+          async function getVideos() {
 
     const videosCollection = collection(db, "videos")
+
+
     const videosSnapshot = await getDocs(videosCollection)
-    const videosList = videosSnapshot.docs.map(doc => doc.data())
+                  const videosList = videosSnapshot.docs.map(doc => doc.data())
     SetVideos(videosList);
   }
 
@@ -24,7 +34,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App" style={{ maxHeight: maxHeight + "px" }}>
       <div className='app-video'>
 
         {Videos.map((item) => {
@@ -33,7 +43,7 @@ function App() {
               likes={item.likes}
               messages={item.messages}
               shares={item.shares}
-              name= {item.name}
+              name={item.name}
               description={item.description}
               music={item.music}
               url={item.url}
